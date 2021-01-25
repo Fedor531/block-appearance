@@ -30,6 +30,6 @@ function setBannersInStorage() {
 window.addEventListener('scroll', setBannersInStorage);
 
 // Для тестов / Отчистка localStorage при перезагрузке страницы
-window.onbeforeunload = function () {
+/* window.onbeforeunload = function () {
   localStorage.clear();
-};
+}; */
