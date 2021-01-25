@@ -1,0 +1,33 @@
+body, h1 {
+    margin: 0 auto;
+    padding: 0;
+}
+
+.container {
+    height: 6600px;
+    background-color: aliceblue;
+}
+
+.banner {
+    margin: 1600px auto 0 auto;
+    width: 80%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 56px;
+}
+
+
+.banner_color_green {
+    background-color: forestgreen;
+}
+
+.banner_color_blue {
+    background-color: rgb(52, 52, 214);
+}
+
+.banner_color_red {
+    background-color: rgb(126, 5, 5);
+}
