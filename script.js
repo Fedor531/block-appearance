@@ -1,8 +1,7 @@
+//  NodeList с баннерами
 const banners = document.querySelectorAll('.banner');
 
-window.addEventListener('scroll', () => setBannersInStorage(banners));
-
-function setBannersInStorage(banners) {
+function setBannersInStorage() {
   banners.forEach((b) => {
     if (
       window.innerHeight + window.scrollY >=
@@ -14,4 +13,23 @@ function setBannersInStorage(banners) {
       console.log(`Баннер с id - ${b.id} записан в localStorage`);
     }
   });
+
+  // Когда все баннеры просмотрены - удаляем слушатель
+  if (
+    [...banners].every((b) => {
+      return Object.keys(localStorage).some((localBannerKey) => {
+        return localBannerKey === b.id;
+      });
+    })
+  ) {
+    window.removeEventListener('scroll', setBannersInStorage);
+  }
 }
+
+// Добавление слушателя
+window.addEventListener('scroll', setBannersInStorage);
+
+// Для тестов / Отчистка localStorage при перезагрузке страницы
+window.onbeforeunload = function () {
+  localStorage.clear();
+};
