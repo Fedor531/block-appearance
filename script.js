@@ -1,25 +1,17 @@
-const banners = document.querySelectorAll('.banner')
+const banners = document.querySelectorAll('.banner');
 
-banners.forEach(b => {
-  if (!localStorage.getItem(`${b.id}`)) {
-    window.addEventListener('scroll', () => setBannerInStorage(b));
-  }
-})
+window.addEventListener('scroll', () => setBannersInStorage(banners));
 
-
-function setBannerInStorage(banner) {
-  if (
-    window.innerHeight + window.scrollY >=
-    banner.getBoundingClientRect().bottom + window.scrollY &&
-    banner.getBoundingClientRect().top + window.scrollY >= window.scrollY
-  ) {
-    localStorage.setItem(`${banner.id}`, 'ok');
-    console.log(`Баннер с id - ${banner.id} записан в localStorage`);
-    window.removeEventListener('scroll', setBannerInStorage);
-  }
+function setBannersInStorage(banners) {
+  banners.forEach((b) => {
+    if (
+      window.innerHeight + window.scrollY >=
+        b.getBoundingClientRect().bottom + window.scrollY &&
+      b.getBoundingClientRect().top + window.scrollY >= window.scrollY &&
+      !localStorage.getItem(`${b.id}`)
+    ) {
+      localStorage.setItem(`${b.id}`, 'ok');
+      console.log(`Баннер с id - ${b.id} записан в localStorage`);
+    }
+  });
 }
-
-// Отчистка localstorage перед уходом со страницы
-window.onbeforeunload = function () {
-  localStorage.removeItem('banner-1');
-};
